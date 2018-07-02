@@ -5,6 +5,11 @@ var Task = require("../models/task");
 
 // INDEX - show index page - soon to show all tasks
 router.get('/', function (req, res) {
+    Task.find({}, function(err, allTasks){
+        if(err){
+            console.log(err);
+        }
+    })
     res.render("tasks/index")
 })
 
@@ -60,8 +65,35 @@ router.get('/:id/edit', function(req, res){
 });
 
 // UPDATE ROUTE - handeling put request when updating a task
+router.put('/:id', function(req, res){
+    //collect input from body
+    var title = req.body.title;
+    var description = req.body.description;
+    var status = req.body.status;
+
+    var updatedTask = { title: title, description: description, status: status };
+
+    Task.findByIdAndUpdate(req.params.id, updatedTask, function(err, updatedTask){
+        if(err){
+            console.log(err);
+            res.redirect('back');
+        } else {
+            res.redirect('/tasks/' + req.params.id);
+        }
+    });
+});
 
 // DELETE ROUTE
+router.delete('/:id', function(req, res){
+    Task.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            console.log(err);
+            res.redirect('/tasks');
+        } else {
+            res.redirect('/tasks');
+        }
+    });
+});
 
 
 
