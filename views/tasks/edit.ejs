@@ -1,0 +1,15 @@
+<% include ../partials/header %>
+
+<h1>Edit Todo - <%= task.title %></h1>
+
+<div class="container">
+    <form action="/tasks/<%=task._id%>?_method=PUT" method="POST">
+        <label>Task:</label>
+        <input type="text" name="title" value="<%= task.title %>">
+        <label>Description:</label>
+        <input type="text" name="description" value="<%= task.description %> ">
+        <button>Submit!</button>
+    </form>
+</div>
+
+<% include ../partials/footer %>
