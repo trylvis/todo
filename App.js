@@ -9,9 +9,16 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"))
 app.use(methodOverride("_method"));
 
-module.exports = app;
 
 // Require task-controller
 var Task = require('./routes/TaskController');
 // Link task-controller to /tasks
 app.use('/tasks', Task);
+
+
+//Require root-controller
+var Root = require('./routes/RootController');
+//Link root-controller to /
+app.use('/', Root)
+
+module.exports = app;
