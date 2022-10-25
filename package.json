@@ -12,10 +12,10 @@
     "express": "^4.16.3",
     "method-override": "^2.3.10",
     "mongoose": "^5.2.12",
-    "snyk": "^1.199.2"
+    "@snyk/protect": "latest"
   },
   "scripts": {
-    "snyk-protect": "snyk protect",
+    "snyk-protect": "snyk-protect",
     "prepare": "npm run snyk-protect"
   },
   "snyk": true
